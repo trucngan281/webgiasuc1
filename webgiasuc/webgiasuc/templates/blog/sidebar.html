@@ -1,0 +1,63 @@
+{% load static %}
+
+<div class="col-lg-4 sidebar ftco-animate">
+  <div class="sidebar-box">
+    <form action="#" class="search-form">
+      <div class="form-group">
+        <span class="icon ion-ios-search"></span>
+        <input type="text" class="form-control" placeholder="Search...">
+      </div>
+    </form>
+  </div>
+  <div class="sidebar-box ftco-animate">
+    <h3 class="heading">Categories</h3>
+    <ul class="categories">
+      {% if categories %}
+        {% for category in categories %}
+        <li><a href="{% url 'post-by-category' category.name %}">{{ category.name }}<span style="color: #000">({{ category.post_set.count }})</span></a></li>
+        {% endfor %}
+      {% else %}
+        <li>There are no Category in the Database</li>
+      {% endif %}
+    </ul>
+  </div>
+
+  <div class="sidebar-box ftco-animate">
+    <h3 class="heading">Recent Blog</h3>
+    {% if recent_posts %}
+      {% for post in recent_posts %}
+        <div class="block-21 mb-4 d-flex">
+          <a class="blog-img mr-4" style="background-image: url({{ post.photo.url }});"></a>
+          <div class="text">
+            <h3 class="heading-1"><a href="#">{{ post.title }}</a></h3>
+            <div class="meta">
+              <div><a href="#"><span class="icon-calendar"></span>{{ post.date }}</a></div>
+              <div><a href="#"><span class="icon-person"></span>{{ post.author }}</a></div>
+              <div><a href="#"><span class="icon-chat"></span> 19</a></div>
+            </div>
+          </div>
+        </div>
+      {% endfor %}
+    {% else %}
+      <p>There are no Posts in the Database</p>
+    {% endif %}
+  </div>
+
+  <div class="sidebar-box ftco-animate">
+    <h3 class="heading">Bài viết xem thêm</h3>
+    <div class="tagcloud">
+      {% if tags %}
+        {% for tag in tags %}
+        <a href="#" class="tag-cloud-link">{{ tag.name }}</a>
+        {% endfor %}
+      {% else %}
+        <p>There are no Tags in the Database</p>
+      {% endif %}
+    </div>
+  </div>
+
+  <div class="sidebar-box ftco-animate">
+    <h3 class="heading">NGUỒN NHÂN LỰC</h3>
+    <p> Lái Thiêu tự hào với nguồn nhân lực hơn 1.000 nhân viên giàu kinh nghiệm, tuổi trẻ năng động, đầy nhiệt huyết, trung thành và tận tâm với công việc</p>
+  </div>
+</div>
